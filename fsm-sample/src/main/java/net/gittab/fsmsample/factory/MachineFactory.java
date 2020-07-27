@@ -5,15 +5,17 @@ import net.gittab.fsmsample.dto.StateMachineDTO;
 import net.gittab.fsmsample.dto.StateMachineNodeDTO;
 import net.gittab.fsmsample.dto.StateMachineTransformDTO;
 import net.gittab.fsmsample.enums.NodeType;
+import net.gittab.fsmsample.enums.TransformType;
 import net.gittab.fsmsample.service.StateMachineNodeService;
 import net.gittab.fsmsample.service.StateMachineService;
-import net.gittab.fsmsample.service.StateMachineTransformService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.StateMachineBuilder;
+import org.springframework.statemachine.guard.Guard;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -26,16 +28,13 @@ public class MachineFactory {
     @Autowired
     private StateMachineNodeService nodeService;
 
-    @Autowired
-    private StateMachineTransformService transformService;
-
-
-
     private StateMachineBuilder.Builder<String, String> getBuilder(String serviceCode, Long stateMachineId) {
         StateMachineDTO stateMachine = stateMachineService.findById(stateMachineId);
+
         List<StateMachineNodeDTO> nodes = stateMachine.getNodes();
         List<StateMachineTransformDTO> transforms = stateMachine.getTransforms();
-        Long initNodeId = nodeService.getNodeId(stateMachineId, NodeType.START);
+
+        Long startNodeId = nodeService.getNodeId(stateMachineId, NodeType.START);
 
         StateMachineBuilder.Builder<String, String> builder = StateMachineBuilder.builder();
         try {
@@ -44,11 +43,11 @@ public class MachineFactory {
                     .machineId(stateMachineId.toString());
             builder.configureStates()
                     .withStates()
-                    .initial(initNodeId.toString(), initialAction(organizationId, serviceCode))
+                    .initial(startNodeId.toString(), initialAction())
                     .states(nodes.stream().map(x -> x.getId().toString()).collect(Collectors.toSet()));
             for (StateMachineTransformDTO transform : transforms) {
-                if (transform.getType().equals(TransformType.ALL)) {
-                    //若配置了全部转换
+                if (Objects.equals(transform.getType(), TransformType.ALL.getValue())) {
+                    // 若配置了全部转换
                     for (StateMachineNodeDTO node : nodes) {
                         String event = transform.getId().toString();
                         String source = node.getId().toString();
@@ -57,11 +56,11 @@ public class MachineFactory {
                                 .withExternal()
                                 .source(source).target(target)
                                 .event(event)
-                                .action(action(organizationId, serviceCode), errorAction(organizationId, serviceCode))
-                                .guard(guard(organizationId, serviceCode));
+                                .action(action(), errorAction())
+                                .guard(guard());
                     }
                 } else {
-                    //转换都是通过id配置
+                    // 转换都是通过 id 配置
                     String event = transform.getId().toString();
                     String source = transform.getStartNodeId().toString();
                     String target = transform.getEndNodeId().toString();
@@ -69,8 +68,8 @@ public class MachineFactory {
                             .withExternal()
                             .source(source).target(target)
                             .event(event)
-                            .action(action(organizationId, serviceCode), errorAction(organizationId, serviceCode))
-                            .guard(guard(organizationId, serviceCode));
+                            .action(action(), errorAction())
+                            .guard(guard());
                 }
 
             }
@@ -78,6 +77,24 @@ public class MachineFactory {
             log.error("build StateMachineBuilder error,exception:{},stateMachineId:{}", e, stateMachineId);
         }
         return builder;
+    }
 
+    private Action<String, String> initialAction(){
+        return stateContext -> MachineFactory.log.info("stateMachine instance execute initialAction");
+    }
+
+    private Action<String, String> action(){
+        return stateContext -> MachineFactory.log.info("stateMachine instance execute action");
+    }
+
+    private Action<String, String> errorAction(){
+        return stateContext -> MachineFactory.log.info("stateMachine instance execute errorAction");
+    }
+
+    private Guard<String, String> guard(){
+        return stateContext -> {
+            MachineFactory.log.info("stateMachine instance execute guard");
+            return true;
+        };
     }
 }
