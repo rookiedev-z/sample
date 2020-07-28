@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.gittab.fsmsample.mapper.StateMachineTransformMapper">
+
+    <select id="queryByStartNodeIdOrType" resultType="net.gittab.fsmsample.domain.StateMachineTransform">
+        SELECT *
+        FROM fsm_state_machine_transforms
+        WHERE state_machine_id = #{stateMachineId}
+        and (
+          start_node_id = #{startNodeId}
+          OR
+          type = #{transformType}
+        )
+    </select>
+
+</mapper>

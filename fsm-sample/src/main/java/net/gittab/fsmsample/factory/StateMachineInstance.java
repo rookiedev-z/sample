@@ -1,14 +1,13 @@
 package net.gittab.fsmsample.factory;
 
+import lombok.extern.slf4j.Slf4j;
+import net.gittab.fsmsample.model.TransformMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.support.DefaultStateMachineContext;
 import org.springframework.stereotype.Component;
-
-import lombok.extern.slf4j.Slf4j;
-import net.gittab.fsmsample.model.TransformMessage;
 
 /**
  * StateMachineClient.

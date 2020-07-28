@@ -1,7 +1,10 @@
 package net.gittab.fsmsample.processor;
 
-import java.lang.reflect.Method;
-
+import lombok.extern.slf4j.Slf4j;
+import net.gittab.fsmsample.annotation.Condition;
+import net.gittab.fsmsample.annotation.PostAction;
+import net.gittab.fsmsample.annotation.PostActionClass;
+import net.gittab.fsmsample.model.InvokeBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -9,11 +12,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
-import lombok.extern.slf4j.Slf4j;
-import net.gittab.fsmsample.annotation.PostAction;
-import net.gittab.fsmsample.annotation.PostActionClass;
-import net.gittab.fsmsample.annotation.Condition;
-import net.gittab.fsmsample.model.InvokeBean;
+import java.lang.reflect.Method;
 
 /**
  * StateMachineProcessor.

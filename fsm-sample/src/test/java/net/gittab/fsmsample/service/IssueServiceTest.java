@@ -1,11 +1,10 @@
 package net.gittab.fsmsample.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import net.gittab.fsmsample.FsmSampleApplicationTests;
 import net.gittab.fsmsample.domain.Issue;
 import net.gittab.fsmsample.repository.IssueRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * IssueServiceTest.
@@ -34,11 +33,11 @@ public class IssueServiceTest extends FsmSampleApplicationTests {
 
     @Test
     public void updateIssueStatus(){
-        // 1 -> 3 by 3, 3 -> 4 by 5, 4 -> 3 by 7
+        // 1 -> 3 by 3, 3 -> 4 by 5, 4 -> 3 by 7, all -> 1 by 14
         Long expectStatusId = 3L;
         Long projectId = 1L;
         Long issueId = 1L;
-        Long transformId = 7L;
+        Long transformId = 3L;
         this.issueService.updateIssueStatus(projectId, issueId, transformId);
         Issue issue = this.issueRepository.getById(issueId);
         assert expectStatusId.equals(issue.getStatusId());

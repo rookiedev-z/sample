@@ -1,8 +1,8 @@
 package net.gittab.fsmsample.model;
 
-import java.lang.reflect.Method;
-
 import lombok.Data;
+
+import java.lang.reflect.Method;
 
 /**
  * InvokeBean.

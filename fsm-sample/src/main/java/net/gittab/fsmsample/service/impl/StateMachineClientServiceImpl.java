@@ -2,6 +2,7 @@ package net.gittab.fsmsample.service.impl;
 
 import java.util.List;
 
+import net.gittab.fsmsample.mapper.StateMachineTransformMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -43,6 +44,9 @@ public class StateMachineClientServiceImpl implements StateMachineClientService 
     private StateMachineTransformRepository transformRepository;
 
     @Autowired
+    private StateMachineTransformMapper transformMapper;
+
+    @Autowired
     private StateMachineInstance stateMachineInstance;
 
     @Autowired
@@ -55,8 +59,10 @@ public class StateMachineClientServiceImpl implements StateMachineClientService 
         StateMachineNode stateMachineNode = this.nodeRepository.findByStateMachineIdAndStatusId(stateMachineId, currentStatusId);
         Assert.notNull(stateMachineNode, "state machine node not found");
 
-        // 校验 transform 是否合法
-        List<StateMachineTransform> transforms = this.transformRepository.findByStateMachineIdAndStartNodeId(stateMachineId, stateMachineNode.getId());
+        // 查询当前状态节点可进行的转换，校验该 transform 是否合法
+        List<StateMachineTransform> transforms = this.transformMapper
+                .queryByStartNodeIdOrType(stateMachineId, stateMachineNode.getId(), TransformType.ALL.getValue());
+
         if(transforms.stream().noneMatch(item -> item.getId().equals(transformId))){
             throw new IllegalStateException("this transform is not exist");
         }

@@ -1,15 +1,14 @@
 package net.gittab.fsmsample.processor;
 
+import lombok.extern.slf4j.Slf4j;
+import net.gittab.fsmsample.model.InvokeBean;
+import net.gittab.fsmsample.model.TransformMessage;
+import org.springframework.stereotype.Component;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.springframework.stereotype.Component;
-
-import lombok.extern.slf4j.Slf4j;
-import net.gittab.fsmsample.model.InvokeBean;
-import net.gittab.fsmsample.model.TransformMessage;
 
 /**
  * StateMachineManagement.

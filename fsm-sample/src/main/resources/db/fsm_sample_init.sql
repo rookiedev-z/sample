@@ -34,7 +34,7 @@ CREATE TABLE `fsm_issues` (
 -- Records of fsm_issues
 -- ----------------------------
 BEGIN;
-INSERT INTO `fsm_issues` VALUES (1, 1, 'Issue-01', 'issue 摘要', 3, NULL, 'issue 描述信息');
+INSERT INTO `fsm_issues` VALUES (1, 1, 'Issue-01', 'issue 摘要', 3, 1, 'issue 描述信息');
 COMMIT;
 
 -- ----------------------------
@@ -45,17 +45,16 @@ CREATE TABLE `fsm_state_machine_nodes` (
                                            `id` bigint NOT NULL AUTO_INCREMENT,
                                            `state_machine_id` bigint NOT NULL COMMENT '状态机 id',
                                            `status_id` bigint NOT NULL COMMENT '状态 id',
-                                           `type` int NOT NULL COMMENT '节点类型, 0:start 1:init 2:custom',
+                                           `type` int NOT NULL COMMENT '0：开始节点，1：初始化节点，2：自定义节点',
                                            `all_transform_id` bigint DEFAULT NULL COMMENT '全部转换 id',
                                            `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '描述',
                                            PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of fsm_state_machine_nodes
 -- ----------------------------
 BEGIN;
-INSERT INTO `fsm_state_machine_nodes` VALUES (0, 1, 0, 0, NULL, 'start node');
 INSERT INTO `fsm_state_machine_nodes` VALUES (1, 1, 1, 1, NULL, 'todo init node');
 INSERT INTO `fsm_state_machine_nodes` VALUES (2, 1, 2, 2, NULL, 'groomed node');
 INSERT INTO `fsm_state_machine_nodes` VALUES (3, 1, 3, 2, NULL, 'in progress node');
@@ -64,6 +63,7 @@ INSERT INTO `fsm_state_machine_nodes` VALUES (5, 1, 5, 2, NULL, 'needs qa node')
 INSERT INTO `fsm_state_machine_nodes` VALUES (6, 1, 6, 2, NULL, 'qa approved node');
 INSERT INTO `fsm_state_machine_nodes` VALUES (7, 1, 7, 2, NULL, 'ready for production node');
 INSERT INTO `fsm_state_machine_nodes` VALUES (8, 1, 8, 2, NULL, 'done node');
+INSERT INTO `fsm_state_machine_nodes` VALUES (10, 1, 0, 0, NULL, 'start node');
 COMMIT;
 
 -- ----------------------------
@@ -79,7 +79,7 @@ CREATE TABLE `fsm_state_machine_transforms` (
                                                 `type` int DEFAULT NULL COMMENT '转换类型，0:transform_init， 1:transform_all， 2:transform_custom',
                                                 `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '描述',
                                                 PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of fsm_state_machine_transforms
@@ -87,7 +87,7 @@ CREATE TABLE `fsm_state_machine_transforms` (
 BEGIN;
 INSERT INTO `fsm_state_machine_transforms` VALUES (2, 'init', 1, 0, 1, 0, '初始化');
 INSERT INTO `fsm_state_machine_transforms` VALUES (3, 'Start working', 1, 1, 3, 2, 'start working, todo -> in progress');
-INSERT INTO `fsm_state_machine_transforms` VALUES (4, 'Won\'t Do', 1, 1, 8, 2, 'wont\'t do, to -> done');
+INSERT INTO `fsm_state_machine_transforms` VALUES (4, 'Won\'t Do', 1, 1, 8, 2, 'wont\'t do, to do -> done');
 INSERT INTO `fsm_state_machine_transforms` VALUES (5, 'Get Blocked', 1, 3, 4, 2, 'get blocked, in progress -> blocked');
 INSERT INTO `fsm_state_machine_transforms` VALUES (6, 'Deploy to Stage', 1, 3, 5, 2, 'deploy to stage, in progress -> needs qa');
 INSERT INTO `fsm_state_machine_transforms` VALUES (7, 'Start Development', 1, 4, 3, 2, 'start development, blocked -> in progress');
@@ -97,6 +97,7 @@ INSERT INTO `fsm_state_machine_transforms` VALUES (10, 'Reject', 1, 6, 3, 2, 're
 INSERT INTO `fsm_state_machine_transforms` VALUES (11, 'Merge and Tag', 1, 6, 7, 2, 'merge and tag, qa approved -> ready for production');
 INSERT INTO `fsm_state_machine_transforms` VALUES (12, 'Deploy to Production', 1, 7, 8, 2, 'deploy to production, ready for production -> done');
 INSERT INTO `fsm_state_machine_transforms` VALUES (13, 'Reopen', 1, 8, 1, 2, 'reopen, done -> todo');
+INSERT INTO `fsm_state_machine_transforms` VALUES (14, 'Adjust Scope', 1, 0, 1, 1, 'all -> todo');
 COMMIT;
 
 -- ----------------------------
@@ -106,7 +107,7 @@ DROP TABLE IF EXISTS `fsm_state_machines`;
 CREATE TABLE `fsm_state_machines` (
                                       `id` bigint NOT NULL AUTO_INCREMENT,
                                       `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '状态机名称',
-                                      `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '0:草稿 1: 创建 2: 已发布',
+                                      `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '0：草稿，1：创建，2：已发布',
                                       `project_id` bigint DEFAULT NULL COMMENT '项目 id',
                                       `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '描述',
                                       PRIMARY KEY (`id`)

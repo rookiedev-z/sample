@@ -1,8 +1,7 @@
 package net.gittab.fsmsample.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import net.gittab.fsmsample.domain.Issue;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * IssueRepository.
