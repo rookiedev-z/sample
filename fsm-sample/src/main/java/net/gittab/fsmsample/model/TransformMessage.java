@@ -15,6 +15,6 @@ public class TransformMessage {
 
     private String invokeCode;
 
-    private Long userId;
+    private Long assigneeId;
 
 }

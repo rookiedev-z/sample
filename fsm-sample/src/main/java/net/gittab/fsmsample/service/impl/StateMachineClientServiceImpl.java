@@ -72,7 +72,9 @@ public class StateMachineClientServiceImpl implements StateMachineClientService 
         transformMessage.setInvokeCode(ActionCode.ASSIGN_USER);
 
         // 执行转换
-        this.stateMachineInstance.executeTransform(stateMachineId, transformId, currentStatusId, transformMessage);
+//        this.stateMachineInstance.executeTransform(stateMachineId, transformId, currentStatusId, transformMessage);
+        this.stateMachineInstance.executeSquirrelTransform(stateMachineId, transformId, stateMachineNode.getId(), transformMessage);
+
     }
 
     @Override
@@ -96,7 +98,7 @@ public class StateMachineClientServiceImpl implements StateMachineClientService 
         }
 
         // 执行定义的后置动作, 比如说将 issue assign 给指定的人
-        message.setUserId(1L);
+        message.setAssigneeId(1L);
         stateMachineManagement.postAction(message);
 
     }

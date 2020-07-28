@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.gittab.fsmsample.annotation.Condition;
 import net.gittab.fsmsample.annotation.PostAction;
 import net.gittab.fsmsample.annotation.PostActionClass;
+import net.gittab.fsmsample.factory.StateMachineClient;
 import net.gittab.fsmsample.model.InvokeBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class StateMachineProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        if(bean instanceof StateMachineClient){
+            log.info("=======================StateMachineClient post process after initialization=======================");
+        }
         if(bean instanceof AbstractAction && bean.getClass().isAnnotationPresent(PostActionClass.class)){
             Method[] methods = ReflectionUtils.getAllDeclaredMethods(bean.getClass());
             log.info("=======================post process after initialization=======================");

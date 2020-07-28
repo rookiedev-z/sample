@@ -7,7 +7,6 @@ import net.gittab.fsmsample.dto.StateMachineNodeDTO;
 import net.gittab.fsmsample.dto.StateMachineTransformDTO;
 import net.gittab.fsmsample.enums.NodeType;
 import net.gittab.fsmsample.enums.TransformType;
-import net.gittab.fsmsample.service.StateMachineClientService;
 import net.gittab.fsmsample.service.StateMachineNodeService;
 import net.gittab.fsmsample.service.StateMachineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,10 @@ public class MachineFactory {
     public static final String STATE_MACHINE_HEADER_KEY = "state_machine_header";
 
     @Autowired
-    private StateMachineClientService stateMachineClientService;
+    private StateMachineAction stateMachineAction;
+
+    @Autowired
+    private StateMachineGuard stateMachineGuard;
 
     @Autowired
     private StateMachineService stateMachineService;
@@ -109,7 +111,7 @@ public class MachineFactory {
     }
 
     private Action<String, String> action() {
-        return new StateMachineAction(stateMachineClientService);
+        return stateMachineAction;
     }
 
     private Action<String, String> errorAction() {
@@ -117,6 +119,6 @@ public class MachineFactory {
     }
 
     private Guard<String, String> guard() {
-        return new StateMachineGuard(stateMachineClientService);
+        return stateMachineGuard;
     }
 }

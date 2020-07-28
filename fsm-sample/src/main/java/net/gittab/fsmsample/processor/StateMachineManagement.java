@@ -36,7 +36,7 @@ public class StateMachineManagement {
         if(invokeBean != null){
             Method method = invokeBean.getMethod();
             try {
-                method.invoke(invokeBean.getObject(), message.getIssueId(), message.getUserId());
+                method.invoke(invokeBean.getObject(), message.getIssueId(), message.getAssigneeId());
             } catch (IllegalAccessException | InvocationTargetException e) {
                 log.error("execute post action failed", e);
                 throw new IllegalStateException(e.getLocalizedMessage());
