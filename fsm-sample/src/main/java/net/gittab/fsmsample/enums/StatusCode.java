@@ -1,5 +1,8 @@
 package net.gittab.fsmsample.enums;
 
+/**
+ * @author xiaohua zhou
+ */
 public interface StatusCode {
 
     /**

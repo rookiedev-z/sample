@@ -1,11 +1,17 @@
 package net.gittab.fsmsample.service.impl;
 
-import net.gittab.fsmsample.dto.StatusDTO;
-import net.gittab.fsmsample.mapper.StatusMapper;
-import net.gittab.fsmsample.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+import net.gittab.fsmsample.dto.StatusDTO;
+import net.gittab.fsmsample.mapper.StatusMapper;
+import net.gittab.fsmsample.service.StatusService;
+
+/**
+ * @author xiaohua zhou
+ */
+@Slf4j
 @Service
 public class StatusServiceImpl implements StatusService {
 

@@ -2,6 +2,10 @@ package net.gittab.fsmsample.enums;
 
 import lombok.Getter;
 
+/**
+ * @author xiaohua zhou
+ */
+
 @Getter
 public enum TransformType {
 

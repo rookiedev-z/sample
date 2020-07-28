@@ -1,5 +1,12 @@
 package net.gittab.fsmsample.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
+
 import lombok.extern.slf4j.Slf4j;
 import net.gittab.fsmsample.domain.StateMachine;
 import net.gittab.fsmsample.domain.StateMachineNode;
@@ -7,37 +14,22 @@ import net.gittab.fsmsample.domain.StateMachineTransform;
 import net.gittab.fsmsample.dto.StateMachineDTO;
 import net.gittab.fsmsample.dto.StateMachineNodeDTO;
 import net.gittab.fsmsample.dto.StateMachineTransformDTO;
-import net.gittab.fsmsample.mapper.StateMachineMapper;
-import net.gittab.fsmsample.mapper.StateMachineNodeMapper;
-import net.gittab.fsmsample.mapper.StateMachineTransformMapper;
 import net.gittab.fsmsample.repository.StateMachineNodeRepository;
 import net.gittab.fsmsample.repository.StateMachineRepository;
 import net.gittab.fsmsample.repository.StateMachineTransformRepository;
 import net.gittab.fsmsample.service.StateMachineService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import org.springframework.util.CollectionUtils;
 
-import java.util.List;
-
+/**
+ * @author xiaohua zhou
+ */
 @Slf4j
 @Service
 public class StateMachineServiceImpl implements StateMachineService {
 
     @Autowired
     private ModelMapper modelMapper;
-
-    @Autowired
-    private StateMachineMapper stateMachineMapper;
-
-    @Autowired
-    private StateMachineNodeMapper nodeMapper;
-
-    @Autowired
-    private StateMachineTransformMapper transformMapper;
 
     @Autowired
     private StateMachineRepository stateMachineRepository;
@@ -51,7 +43,7 @@ public class StateMachineServiceImpl implements StateMachineService {
 
     @Override
     public StateMachineDTO findById(Long stateMachineId) {
-        StateMachine stateMachine = this.stateMachineMapper.selectByPrimaryKey(stateMachineId);
+        StateMachine stateMachine = this.stateMachineRepository.getById(stateMachineId);
         Assert.notNull(stateMachine, "state machine not found");
         StateMachineDTO stateMachineDTO = this.modelMapper.map(stateMachine, StateMachineDTO.class);
 

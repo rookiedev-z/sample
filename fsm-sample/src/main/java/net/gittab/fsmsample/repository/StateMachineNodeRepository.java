@@ -5,9 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * @author xiaohua zhou
+ */
 public interface StateMachineNodeRepository extends JpaRepository<StateMachineNode, Long> {
+
+    StateMachineNode getById(Long id);
 
     List<StateMachineNode> findByStateMachineId(Long stateMachineId);
 
     List<StateMachineNode> findByStateMachineIdAndType(Long stateMachineId, Integer type);
+
+    StateMachineNode findByStateMachineIdAndStatusId(Long stateMachineId, Long statusId);
 }

@@ -2,11 +2,16 @@ package net.gittab.fsmsample.domain;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author xiaohua zhou
+ */
 @Data
+@Entity
 @Table(name = "fsm_state_machine_nodes")
 public class StateMachineNode {
 

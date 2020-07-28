@@ -5,7 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * @author xiaohua zhou
+ */
 public interface StateMachineTransformRepository extends JpaRepository<StateMachineTransform, Long> {
 
+    StateMachineTransform getById(Long id);
+
     List<StateMachineTransform> findByStateMachineId(Long stateMachineId);
+
+    List<StateMachineTransform> findByStateMachineIdAndStartNodeId(Long stateMachineId, Long startNodeId);
 }

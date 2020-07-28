@@ -8,6 +8,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.List;
 
+/**
+ * @author xiaohua zhou
+ */
 @Data
 public class StateMachineDTO {
 

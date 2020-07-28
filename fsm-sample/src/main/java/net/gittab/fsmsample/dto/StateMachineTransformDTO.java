@@ -2,6 +2,9 @@ package net.gittab.fsmsample.dto;
 
 import lombok.Data;
 
+/**
+ * @author xiaohua zhou
+ */
 @Data
 public class StateMachineTransformDTO {
 
