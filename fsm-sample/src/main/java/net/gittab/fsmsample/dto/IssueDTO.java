@@ -19,5 +19,7 @@ public class IssueDTO {
 
     private Long projectId;
 
+    private Long assigneeId;
+
     private String description;
 }

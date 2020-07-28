@@ -25,6 +25,7 @@ CREATE TABLE `fsm_issues` (
                               `num` varchar(100) DEFAULT NULL COMMENT 'issue 编号',
                               `summary` varchar(255) DEFAULT NULL COMMENT '摘要',
                               `status_id` bigint DEFAULT NULL COMMENT '状态 id',
+                              `assignee_id` bigint DEFAULT NULL COMMENT '经办人 id',
                               `description` varchar(255) DEFAULT NULL COMMENT 'issue 描述',
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -33,7 +34,7 @@ CREATE TABLE `fsm_issues` (
 -- Records of fsm_issues
 -- ----------------------------
 BEGIN;
-INSERT INTO `fsm_issues` VALUES (1, 1, 'Issue-01', 'issue 摘要', 3, 'issue 描述信息');
+INSERT INTO `fsm_issues` VALUES (1, 1, 'Issue-01', 'issue 摘要', 3, NULL, 'issue 描述信息');
 COMMIT;
 
 -- ----------------------------

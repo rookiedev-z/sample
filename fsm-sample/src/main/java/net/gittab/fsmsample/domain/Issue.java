@@ -30,5 +30,7 @@ public class Issue {
 
     private Long statusId;
 
+    private Long assigneeId;
+
     private String description;
 }
