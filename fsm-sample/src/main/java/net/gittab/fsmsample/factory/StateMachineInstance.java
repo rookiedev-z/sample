@@ -59,7 +59,7 @@ public class StateMachineInstance {
     public void executeSquirrelTransform(Long stateMachineId, Long transformId, Long currentNodeId, TransformMessage transformMessage){
 
         // 从指定的状态构建 state machine
-        UntypedStateMachine stateMachine = this.squirrelMachineFactory.create(StateMachineClient.class, stateMachineId, currentNodeId);
+        UntypedStateMachine stateMachine = this.squirrelMachineFactory.create(stateMachineId, currentNodeId, StateMachineClient.class);
 
         // 触发转换事件
         stateMachine.fire(transformId, transformMessage);

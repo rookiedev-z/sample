@@ -7,6 +7,8 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import net.gittab.fsmsample.factory.StateMachineClient;
 import org.squirrelframework.foundation.component.SquirrelPostProcessor;
 import org.squirrelframework.foundation.component.SquirrelPostProcessorProvider;
 import org.squirrelframework.foundation.fsm.UntypedStateMachine;
@@ -25,7 +27,7 @@ public class StateMachineAutowireProcessor implements SquirrelPostProcessor<Unty
 
     public StateMachineAutowireProcessor() {
         // register StateMachineAutowireProcessor as state machine post processor
-        SquirrelPostProcessorProvider.getInstance().register(UntypedStateMachine.class, this);
+        SquirrelPostProcessorProvider.getInstance().register(StateMachineClient.class, this);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class StateMachineAutowireProcessor implements SquirrelPostProcessor<Unty
     public void postProcess(UntypedStateMachine untypedStateMachine) {
         Preconditions.checkNotNull(untypedStateMachine);
         // after state machine instance created,
-        // autoware @Autowired/@Value dependencies and properties within state machine class
+        // autowire @Autowired/@Value dependencies and properties within state machine class
         AutowireCapableBeanFactory autowireCapableBeanFactory = applicationContext.getAutowireCapableBeanFactory();
         autowireCapableBeanFactory.autowireBean(untypedStateMachine);
     }

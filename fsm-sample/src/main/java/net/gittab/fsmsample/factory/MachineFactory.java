@@ -41,6 +41,8 @@ public class MachineFactory {
     @Autowired
     private StateMachineNodeService nodeService;
 
+//    private StateMachineBuilder.Builder<String, String> builder;
+
     private StateMachineBuilder.Builder<String, String> getBuilder(Long stateMachineId) {
 
         // 查找当前状态机下面的所有状态节点和转换方式
@@ -100,6 +102,9 @@ public class MachineFactory {
 
     public StateMachine<String, String> buildStateMachine(Long stateMachineId) {
         StateMachineBuilder.Builder<String, String> builder = getBuilder(stateMachineId);
+//        if(builder == null){
+//            builder = getBuilder(stateMachineId);
+//        }
         StateMachine<String, String> stateMachine = builder.build();
         // start state machine
         stateMachine.start();

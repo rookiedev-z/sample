@@ -1,22 +1,21 @@
 package net.gittab.fsmsample.factory;
 
-import lombok.extern.slf4j.Slf4j;
-import net.gittab.fsmsample.conditions.IssueStatusCondition;
-import net.gittab.fsmsample.domain.StateMachineNode;
-import net.gittab.fsmsample.dto.StateMachineDTO;
-import net.gittab.fsmsample.dto.StateMachineTransformDTO;
-import net.gittab.fsmsample.enums.NodeType;
-import net.gittab.fsmsample.enums.TransformType;
-import net.gittab.fsmsample.service.StateMachineNodeService;
-import net.gittab.fsmsample.service.StateMachineService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.squirrelframework.foundation.fsm.StateMachineBuilderFactory;
-import org.squirrelframework.foundation.fsm.UntypedStateMachine;
-import org.squirrelframework.foundation.fsm.UntypedStateMachineBuilder;
-
 import java.util.List;
 import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
+import net.gittab.fsmsample.conditions.IssueStatusCondition;
+import net.gittab.fsmsample.dto.StateMachineDTO;
+import net.gittab.fsmsample.dto.StateMachineTransformDTO;
+import net.gittab.fsmsample.enums.TransformType;
+import net.gittab.fsmsample.service.StateMachineService;
+import org.squirrelframework.foundation.fsm.StateMachineBuilderFactory;
+import org.squirrelframework.foundation.fsm.StateMachineConfiguration;
+import org.squirrelframework.foundation.fsm.UntypedStateMachine;
+import org.squirrelframework.foundation.fsm.UntypedStateMachineBuilder;
 
 /**
  * StateMachineFactory.
@@ -33,30 +32,37 @@ public class SquirrelMachineFactory {
     @Autowired
     private StateMachineService stateMachineService;
 
-    @Autowired
-    private StateMachineNodeService nodeService;
+//    private UntypedStateMachineBuilder builder;
 
-    public UntypedStateMachine create(Class<StateMachineClient> clazz, Long stateMachineId, Long currentNodeId){
+    public UntypedStateMachine create(Long stateMachineId, Long currentNodeId, Class<StateMachineClient> clazz){
+
+        // 单例复用 state machine builder, 但是如果是有多个状态机的时候不能单例
+//        if(this.builder == null){
+//            synchronized (SquirrelMachineFactory.class){
+//                if(this.builder == null){
+//                    // config builder
+//                    this.builder = getBuilder(stateMachineId, clazz);
+//                }
+//            }
+//        }
+        // 多 pod 部署的情况下可用 redis 来缓存 builder
+        UntypedStateMachineBuilder builder = getBuilder(stateMachineId, clazz);
+
+        // state machine instance 不可复用，足够轻量，直接创建
+        return builder.newStateMachine(currentNodeId, StateMachineConfiguration.create().enableDebugMode(true).enableAutoStart(true));
+    }
+
+    public UntypedStateMachineBuilder getBuilder(Long stateMachineId, Class<StateMachineClient> clazz){
+
+        // builder 可被复用，如果系统启动后没有状态新增或删除可以以单例方式交给 spring container 管理
+        // 如果系统启动后有状态新增或删除则可以手动维护 builder 实例，当状态元素发生变化时需要重新构建 builder
 
         // 查找当前状态机下面的所有状态节点和转换方式
         StateMachineDTO stateMachine = stateMachineService.findById(stateMachineId);
 
         List<StateMachineTransformDTO> transforms = stateMachine.getTransforms();
 
-        // 获取开始节点
-        StateMachineNode initialNode = nodeService.getInitNodeId(stateMachineId, NodeType.START);
-
-        // config builder
-        UntypedStateMachineBuilder builder = getBuilder(initialNode.getId(), transforms, clazz);
-
-        return builder.newStateMachine(currentNodeId);
-
-    }
-
-    public UntypedStateMachineBuilder getBuilder(Long initialNodeId, List<StateMachineTransformDTO> transforms, Class<StateMachineClient> clazz){
         UntypedStateMachineBuilder builder = StateMachineBuilderFactory.create(clazz);
-
-        builder.onEntry(initialNodeId).callMethod("initial");
 
         for (StateMachineTransformDTO transform : transforms) {
             if (Objects.equals(transform.getType(), TransformType.ALL.getValue())) {
@@ -76,5 +82,16 @@ public class SquirrelMachineFactory {
         }
         return builder;
     }
+
+//    /**
+//     * 当状态机有新元素加入或者有元素被删除需要根据最新的元素重新构建 builder.
+//     * @param stateMachineId state machine id
+//     * @param clazz state machine class
+//     */
+//    public void recreateBuilder(Long stateMachineId, Class<StateMachineClient> clazz){
+//        synchronized (SquirrelMachineFactory.class) {
+//            this.builder = getBuilder(stateMachineId, clazz);
+//        }
+//    }
 
 }
