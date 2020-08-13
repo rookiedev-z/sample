@@ -15,7 +15,7 @@ import net.gittab.async.service.TaskService;
 /**
  * BlockingController.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/8/13 5:21 下午
  **/
 @Slf4j
@@ -30,7 +30,7 @@ public class BlockingController {
     public String blockEndpoint(){
         log.info("========== received block endpoint request");
         String result = this.taskService.executeTask();
-        log.info("========== thread of receive request released");
+        log.info("========== the servlet thread that received the request has been released");
         return result;
     }
 
@@ -38,7 +38,7 @@ public class BlockingController {
     public Callable<String> callableEndpoint(){
         log.info("========== received callable endpoint request");
         Callable<String> callable = this.taskService :: executeTask;
-        log.info("========== thread of receive request released");
+        log.info("========== the servlet thread that received the request has been released");
         return callable;
     }
 
@@ -48,7 +48,7 @@ public class BlockingController {
         DeferredResult<String> deferredResult = new DeferredResult<>();
         CompletableFuture.supplyAsync(this.taskService :: executeTask)
                 .whenCompleteAsync((result, throwable) -> deferredResult.setResult(result));
-        log.info("========== thread of receive request released");
+        log.info("========== the servlet thread that received the request has been released");
         return deferredResult;
     }
 }
