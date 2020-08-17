@@ -1,5 +1,7 @@
 package net.gittab.async.service;
 
+import org.springframework.scheduling.annotation.Async;
+
 /**
  * TaskService.
  *
@@ -8,5 +10,7 @@ package net.gittab.async.service;
  **/
 public interface TaskService {
 
-    String executeTask();
+    String execute();
+
+    void asyncExecute();
 }
