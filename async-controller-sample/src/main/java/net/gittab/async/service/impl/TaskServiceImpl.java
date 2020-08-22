@@ -1,7 +1,9 @@
 package net.gittab.async.service.impl;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import lombok.SneakyThrows;
@@ -20,10 +22,22 @@ public class TaskServiceImpl implements TaskService {
 
     @SneakyThrows
     @Override
-    public String executeTask() {
+    public String execute() {
         log.info("========== task execute start");
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(6);
+//        if(true){
+//            throw new IllegalAccessException();
+//        }
         log.info("========== task execute end");
         return "task execute success";
+    }
+
+    @SneakyThrows
+    @Async
+    @Override
+    public void asyncExecute() {
+        log.info("========== task async execute start");
+        TimeUnit.SECONDS.sleep(5);
+        log.info("========== task async execute end");
     }
 }
