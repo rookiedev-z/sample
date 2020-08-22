@@ -1,9 +1,5 @@
 package net.gittab.fsmsample.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-
 import lombok.extern.slf4j.Slf4j;
 import net.gittab.fsmsample.domain.Issue;
 import net.gittab.fsmsample.domain.StateMachine;
@@ -14,6 +10,10 @@ import net.gittab.fsmsample.repository.StateMachineRepository;
 import net.gittab.fsmsample.service.IssueService;
 import net.gittab.fsmsample.service.StateMachineClientService;
 import net.gittab.fsmsample.service.StateMachineNodeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 /**
  * @author xiaohua zhou
@@ -54,6 +54,7 @@ public class IssueServiceImpl implements IssueService {
 
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateIssueStatus(Long projectId, Long issueId, Long transformId) {
         Issue issue = this.issueRepository.getById(issueId);
         Assert.notNull(issue,"issue not found");
@@ -63,5 +64,9 @@ public class IssueServiceImpl implements IssueService {
 
         // 执行状态转换
         stateMachineClientService.executeTransform(issueId, issue.getStatusId(), stateMachine.getId(), transformId);
+
+//        if(true){
+//            throw new IllegalStateException("state exception");
+//        }
     }
 }

@@ -94,7 +94,7 @@ public class StateMachineClientServiceImpl implements StateMachineClientService 
         }
 
         // 执行定义的后置动作, 比如说将 issue assign 给指定的人
-        message.setAssigneeId(1L);
+        message.setAssigneeId(2L);
         stateMachineManagement.postAction(message);
 
     }

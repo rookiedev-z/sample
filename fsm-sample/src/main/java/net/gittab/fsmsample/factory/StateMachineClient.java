@@ -4,7 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import net.gittab.fsmsample.model.TransformMessage;
 import net.gittab.fsmsample.service.StateMachineClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.squirrelframework.foundation.fsm.StateMachineStatus;
+import org.springframework.context.ApplicationContext;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.squirrelframework.foundation.fsm.annotation.StateMachineParameters;
 import org.squirrelframework.foundation.fsm.impl.AbstractUntypedStateMachine;
 
@@ -25,14 +30,38 @@ public class StateMachineClient extends AbstractUntypedStateMachine {
     @Autowired
     private StateMachineClientService stateMachineClientService;
 
+    @Autowired
+    private ApplicationContext applicationContext;
+
     public void initial(Long source, Long target, Long event, TransformMessage context) {
         log.info("===============issue created, status initial {}", target);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void issueStatusUpdate(Long source, Long target, Long event, TransformMessage context){
         log.info("==============state machine action execute, issue {} status updated, source {} to target {} by {}", context.getIssueId(), source, target, event);
+        // 这里持久化数据
+        this.stateMachineClientService.action(event, target, context);
+        if(true){
+            throw new IllegalStateException("state exception");
+        }
 
 //        this.stateMachineClientService.action(event, target, context);
+    }
+
+    @Override
+    public void fire(Object event) {
+        DataSourceTransactionManager transactionManager = applicationContext.getBean("transactionManager", DataSourceTransactionManager.class);
+        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        TransactionStatus status = transactionManager.getTransaction(def);
+        try {
+            super.fire(event);
+            transactionManager.commit(status);
+        } catch (Exception ex) {
+            transactionManager.rollback(status);
+            throw ex;
+        }
     }
 
     @Override
@@ -62,7 +91,7 @@ public class StateMachineClient extends AbstractUntypedStateMachine {
         if(fromState instanceof Long && toState instanceof Long
                 && event instanceof Long && context instanceof TransformMessage){
             // 这里持久化数据
-            this.stateMachineClientService.action((Long) event, (Long) toState, (TransformMessage) context);
+            // this.stateMachineClientService.action((Long) event, (Long) toState, (TransformMessage) context);
         }
     }
 
@@ -80,16 +109,17 @@ public class StateMachineClient extends AbstractUntypedStateMachine {
 
     @Override
     protected void afterTransitionCausedException(Object fromState, Object toState, Object event, Object context) {
-        // 状态机出现异常的时的恢复逻辑
-        Throwable targetException = getLastException().getTargetException();
-        // recover from IllegalArgumentException thrown out from state 'A' to 'B' caused by event 'ToB'
-        if(targetException instanceof IllegalStateException) {
-            // do some error clean up job here
-            log.info("do some error clean up job here to process exception");
-            // after recovered from this exception, reset the state machine status back to normal
-            setStatus(StateMachineStatus.IDLE);
-        } else {
-            super.afterTransitionCausedException(fromState, toState, event, context);
-        }
+//        // 状态机出现异常的时的恢复逻辑
+//        Throwable targetException = getLastException().getTargetException();
+//        // recover from IllegalArgumentException thrown out from state 'A' to 'B' caused by event 'ToB'
+//        if(targetException instanceof IllegalStateException) {
+//            // do some error clean up job here
+//            log.info("do some error clean up job here to process exception");
+//            // after recovered from this exception, reset the state machine status back to normal
+//            setStatus(StateMachineStatus.IDLE);
+//        } else {
+//
+//        }
+        super.afterTransitionCausedException(fromState, toState, event, context);
     }
 }
