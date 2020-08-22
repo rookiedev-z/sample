@@ -1,0 +1,66 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  max-http-header-size: 16KB
+  tomcat:
+    max-threads: 1000
+    min-spare-threads: 50
+    max-http-form-post-size: 20MB
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    property-naming-strategy: SNAKE_CASE
+    time-zone: GMT+8
+  data:
+    redis:
+      repositories:
+        enabled: false
+  devtools:
+    add-properties: false
+
+mybatis:
+  mapper-locations: classpath*:/mapper/**/**Mapper.xml
+
+---
+# dev环境配置覆盖
+server:
+  port: 8080
+spring:
+  profiles: development
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/activity?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    username: root
+    password: root
+    schema:
+      - "classpath*:/script/init.sql"
+    initialization-mode: never
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 5
+
+logging:
+  level:
+    web: debug
+
+#healthCheck config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health,gateway,client'
+  metrics:
+    export:
+      jmx:
+        enabled: false
+  endpoint:
+    health:
+      show-details: always
+
+
+
+
