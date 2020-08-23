@@ -1,3 +1,41 @@
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: admin
+    listener-request-queue: request.queue
+    listener-response-queue: response.queue
+    request:
+      queue: request.queue
+      exchange: request.exchange
+      routing-key: rookiedev
+    response:
+      queue: response.queue
+      exchange: response.exchange
+      routing-key: rookiedev
+
+#    request:
+#      host: 127.0.0.1
+#      port: 5672
+#      username: admin
+#      password: admin
+#      listener-queue: response.queue
+#      template:
+#        exchange: request.exchange
+#        routing-key: rookiedev
+#        default-receive-queue: request.queue
+#    response:
+#      host: 127.0.0.1
+#      port: 5672
+#      username: admin
+#      password: admin
+#      listener-queue: request.exchange
+#      template:
+#        exchange: response.exchange
+#        routing-key: rookiedev
+#        default-receive-queue: response.queue
+
 logging:
   level:
     root: info
