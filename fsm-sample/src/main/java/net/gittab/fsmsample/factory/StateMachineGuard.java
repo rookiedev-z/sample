@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  * StateMachineGuard.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 4:54 下午
  **/
 @Slf4j

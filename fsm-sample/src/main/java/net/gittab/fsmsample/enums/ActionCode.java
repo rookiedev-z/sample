@@ -3,7 +3,7 @@ package net.gittab.fsmsample.enums;
 /**
  * ActionCode.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 public interface ActionCode {
 

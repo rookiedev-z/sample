@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StateMachineTransformRepository extends JpaRepository<StateMachineTransform, Long> {
 

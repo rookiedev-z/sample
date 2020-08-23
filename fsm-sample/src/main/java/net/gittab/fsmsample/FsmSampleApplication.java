@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 @SpringBootApplication
 @MapperScan(basePackages = "net.gittab.fsmsample.mapper")

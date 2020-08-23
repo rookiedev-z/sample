@@ -5,7 +5,7 @@ import net.gittab.fsmsample.model.TransformMessage;
 /**
  * StateMachineInstanceService.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 2:41 下午
  **/
 public interface StateMachineClientService {

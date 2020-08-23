@@ -13,7 +13,7 @@ import net.gittab.async.service.TaskService;
 /**
  * TaskServiceImpl.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/8/13 5:34 下午
  **/
 @Slf4j

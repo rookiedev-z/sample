@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * StateMachineManagement.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 1:05 下午
  **/
 @Slf4j

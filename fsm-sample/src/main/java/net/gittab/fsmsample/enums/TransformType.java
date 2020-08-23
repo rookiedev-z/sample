@@ -3,7 +3,7 @@ package net.gittab.fsmsample.enums;
 import lombok.Getter;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 
 @Getter

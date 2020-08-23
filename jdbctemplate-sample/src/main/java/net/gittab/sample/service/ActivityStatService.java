@@ -7,7 +7,7 @@ import net.gittab.sample.domain.ActivityStat;
 /**
  * ActivityStatService.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 public interface ActivityStatService {
 

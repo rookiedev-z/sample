@@ -1,7 +1,7 @@
 package net.gittab.fsmsample.enums;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 
 public enum StatusType {

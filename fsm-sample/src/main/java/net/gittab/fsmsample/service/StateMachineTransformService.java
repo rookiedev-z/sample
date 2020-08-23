@@ -1,7 +1,7 @@
 package net.gittab.fsmsample.service;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StateMachineTransformService {
 

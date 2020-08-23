@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * IssueDTO.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 2:12 下午
  **/
 @Data

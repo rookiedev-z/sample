@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * Issue.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 1:26 下午
  **/
 @Data

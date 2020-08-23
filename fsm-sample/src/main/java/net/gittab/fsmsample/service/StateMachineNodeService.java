@@ -6,7 +6,7 @@ import net.gittab.fsmsample.domain.StateMachineNode;
 import net.gittab.fsmsample.enums.NodeType;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StateMachineNodeService {
 

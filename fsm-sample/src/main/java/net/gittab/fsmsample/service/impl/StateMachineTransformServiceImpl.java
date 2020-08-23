@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.gittab.fsmsample.service.StateMachineTransformService;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 @Slf4j
 @Service

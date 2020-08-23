@@ -4,7 +4,7 @@ import net.gittab.fsmsample.domain.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StatusRepository extends JpaRepository<Status, Long> {
 }

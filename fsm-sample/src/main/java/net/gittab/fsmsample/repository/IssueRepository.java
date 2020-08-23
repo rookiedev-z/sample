@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * IssueRepository.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 1:32 下午
  **/
 public interface IssueRepository extends JpaRepository<Issue, Long> {

@@ -9,7 +9,7 @@ import net.gittab.fsmsample.mapper.StatusMapper;
 import net.gittab.fsmsample.service.StatusService;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 @Slf4j
 @Service

@@ -3,7 +3,7 @@ package net.gittab.fsmsample.service;
 import net.gittab.fsmsample.domain.Issue;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface IssueService {
 

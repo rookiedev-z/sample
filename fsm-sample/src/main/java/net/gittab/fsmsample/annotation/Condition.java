@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

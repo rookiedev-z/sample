@@ -17,7 +17,7 @@ import net.gittab.sample.service.ActivityStatService;
 /**
  * ActivityStatServiceImpl.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 @Slf4j
 @Service

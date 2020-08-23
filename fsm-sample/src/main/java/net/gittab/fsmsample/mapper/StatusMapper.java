@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StatusMapper extends Mapper<Status> {
 

@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 /**
  * ActivityStat.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 @Data
 @Entity

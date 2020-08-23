@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 @Inherited
 @Target(ElementType.TYPE)

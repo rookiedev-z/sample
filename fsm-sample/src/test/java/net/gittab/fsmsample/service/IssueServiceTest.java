@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * IssueServiceTest.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 3:27 下午
  **/
 @Slf4j

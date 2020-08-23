@@ -20,7 +20,7 @@ import java.util.Objects;
 /**
  * StateMachineFactory.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 @Slf4j
 @Component

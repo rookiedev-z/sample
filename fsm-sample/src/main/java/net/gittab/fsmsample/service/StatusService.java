@@ -3,7 +3,7 @@ package net.gittab.fsmsample.service;
 import net.gittab.fsmsample.dto.StatusDTO;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StatusService {
 

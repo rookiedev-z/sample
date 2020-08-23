@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * IssueStatus.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 @Getter
 public enum IssueStatus {

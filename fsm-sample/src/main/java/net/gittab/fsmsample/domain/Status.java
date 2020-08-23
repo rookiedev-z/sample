@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 @Data
 @Entity

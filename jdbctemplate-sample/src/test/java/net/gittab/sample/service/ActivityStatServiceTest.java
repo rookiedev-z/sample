@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 /**
  * ActivityStatServiceTest.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 public class ActivityStatServiceTest extends JdbcTemplateSampleApplicationTests {
 

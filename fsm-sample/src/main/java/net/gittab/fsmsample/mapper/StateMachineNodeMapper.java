@@ -6,7 +6,7 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StateMachineNodeMapper extends Mapper<StateMachineNode> {
 

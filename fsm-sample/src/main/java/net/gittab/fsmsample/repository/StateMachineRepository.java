@@ -4,7 +4,7 @@ import net.gittab.fsmsample.domain.StateMachine;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StateMachineRepository extends JpaRepository<StateMachine, Long> {
 

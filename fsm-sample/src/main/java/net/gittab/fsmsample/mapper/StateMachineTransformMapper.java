@@ -7,7 +7,7 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 public interface StateMachineTransformMapper extends Mapper<StateMachineTransform> {
 

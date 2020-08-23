@@ -13,7 +13,7 @@ import net.gittab.fsmsample.repository.StateMachineNodeRepository;
 import net.gittab.fsmsample.service.StateMachineNodeService;
 
 /**
- * @author xiaohua zhou
+ * @author rookiedev
  */
 @Slf4j
 @Service

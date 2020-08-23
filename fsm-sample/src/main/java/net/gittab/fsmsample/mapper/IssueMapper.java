@@ -6,7 +6,7 @@ import tk.mybatis.mapper.common.Mapper;
 /**
  * IssueMapper.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 1:37 下午
  **/
 public interface IssueMapper extends Mapper<Issue> {

@@ -3,7 +3,7 @@ package net.gittab.sample.repository;
 /**
  * ActivityStatRepository.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 public interface ActivityStatRepository {
 

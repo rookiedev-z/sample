@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 /**
  * IssueStatusAction.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  * @date 2020/7/28 1:18 下午
  **/
 @Slf4j
