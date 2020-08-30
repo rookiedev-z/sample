@@ -24,7 +24,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public String execute() {
         log.info("========== task execute start");
-        TimeUnit.SECONDS.sleep(6);
+        TimeUnit.SECONDS.sleep(3);
 //        if(true){
 //            throw new IllegalAccessException();
 //        }
