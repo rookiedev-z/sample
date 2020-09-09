@@ -13,10 +13,20 @@ import java.util.Objects;
 public class Main {
 
     public static void main(String[] args) {
+        Object object1 = new Object();
+        Object object2 = new Object();
+        // object1 == object2: false, object1.equals(object2): false
+        System.out.println(String.format("object1 == object2: %s, object1.equals(object2): %s", object1 == object2, object1.equals(object2)));
+
         String str1 = new String("123");
         String str2 = new String("123");
         // str1 == str2: false, str1.equals(str2): true
         System.out.println(String.format("str1 == str2: %s, str1.equals(str2): %s", str1 == str2, str1.equals(str2)));
+
+        String string1 = "123";
+        String string2 = "123";
+        // string1 == string2: true, string1.equals(string2): true
+        System.out.println(String.format("string1 == string2: %s, string1.equals(string2): %s", string1 == string2, string1.equals(string2)));
 
         StrRepresentation str3 = new StrRepresentation("123");
         StrRepresentation str4 = new StrRepresentation("123");
@@ -28,7 +38,7 @@ public class Main {
         // 重写 StrRepresentation 的 hashCode 方法后, str3.hashCode() == str4.hashCode(): true
         System.out.println(String.format("str3.hashCode() == str4.hashCode(): %s", str3.hashCode() == str4.hashCode()));
 
-        Map<StrRepresentation, String> map = new HashMap<>(4);
+        var map = new HashMap<>(4);
         var strRep1 = new StrRepresentation("str1key");
         var strRep2 = new StrRepresentation("str2key");
         var strRep3 = new StrRepresentation("str3key");
