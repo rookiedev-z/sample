@@ -1,8 +1,8 @@
 package net.gittab.basic.enums;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
+import com.alibaba.fastjson.JSONArray;
+
+import java.util.*;
 
 /**
  * Main.
@@ -33,6 +33,7 @@ public class Main {
         System.out.println(issue.getStatus().equals(TestFlowEnum.TODO));
         // compile error
         /// System.out.println(issue.getStatus() == TestFlowEnum.TODO);
+
         issue.setStatus(Issue.StatusEnum.READY_TO_DEPLOY);
 
         System.out.println(issue.readyToDeploy());
@@ -71,4 +72,13 @@ public class Main {
                 return -1;
         }
     }
+
+//    private boolean initiatePay(Order order){
+//        if(order.getStatus() != OrderStatus.TO_PAY){
+//            // 订单状态异常
+//        }
+//        //发起付款
+//        ........
+//        return true;
+//    }
 }

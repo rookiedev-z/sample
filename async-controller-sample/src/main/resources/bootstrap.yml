@@ -1,6 +1,6 @@
 spring:
   application:
-    name: "jbbctemplate-sample"
+    name: "async-controller-sample"
 
 feign:
   client:

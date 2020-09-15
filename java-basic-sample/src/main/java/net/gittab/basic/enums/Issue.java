@@ -25,6 +25,8 @@ public class Issue {
 
     private Long id;
 
+    private IssueType type;
+
     private StatusEnum status;
 
     public Issue(StatusEnum status){
@@ -55,7 +57,6 @@ public class Issue {
     }
 
     public int getCode(){
-
         switch (getStatus()){
             case TODO:
                 return 0;
@@ -92,7 +93,7 @@ public class Issue {
             }
         },
 
-        DONE(2){
+        DONE(3){
             @Override
             public int getInnerCode() {
                 return this.getCode();
@@ -103,8 +104,6 @@ public class Issue {
                 return true;
             }
         };
-
-        private int code;
 
         public int getInnerCode(){
             // default return -1
@@ -122,6 +121,8 @@ public class Issue {
         public boolean isDone(){
             return false;
         }
+
+        private int code;
 
         StatusEnum(int code){
             this.code = code;

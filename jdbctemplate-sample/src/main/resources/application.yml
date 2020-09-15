@@ -28,7 +28,7 @@ mybatis:
 ---
 # dev环境配置覆盖
 server:
-  port: 8080
+  port: 8081
 spring:
   profiles: development
   datasource:
