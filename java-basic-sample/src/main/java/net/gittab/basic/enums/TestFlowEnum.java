@@ -1,9 +1,9 @@
 package net.gittab.basic.enums;
 
 /**
- * StatusEnum.
+ * TestFlowEnum.
  *
- * @author xiaohua zhou
+ * @author rookiedev
  **/
 public enum TestFlowEnum {
 

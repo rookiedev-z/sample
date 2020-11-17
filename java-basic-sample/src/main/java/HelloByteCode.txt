@@ -1,0 +1,217 @@
+Classfile /Users/rookiedev/study/project/blog/sample/java-basic-sample/src/main/java/net/gittab/basic/jvm/Hello.class
+  Last modified 2020年10月13日; size 1370 bytes
+  MD5 checksum eeda4b8cd9f474d34594826971dd4f9f
+  Compiled from "Hello.java"
+public class net.gittab.basic.jvm.Hello
+  minor version: 0
+  major version: 55
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #7                          // net/gittab/basic/jvm/Hello
+  super_class: #12                        // java/lang/Object
+  interfaces: 0, fields: 0, methods: 3, attributes: 1
+Constant pool:
+   #1 = Methodref          #12.#35        // java/lang/Object."<init>":()V
+   #2 = Class              #36            // java/lang/String
+   #3 = String             #37            // +
+   #4 = String             #38            // -
+   #5 = String             #39            // *
+   #6 = String             #40            // /
+   #7 = Class              #41            // net/gittab/basic/jvm/Hello
+   #8 = Methodref          #7.#35         // net/gittab/basic/jvm/Hello."<init>":()V
+   #9 = Methodref          #7.#42         // net/gittab/basic/jvm/Hello.calculate:(IILjava/lang/String;)I
+  #10 = Fieldref           #43.#44        // java/lang/System.out:Ljava/io/PrintStream;
+  #11 = String             #45            // the sum of the number %s and the number %s is %s, the difference is %s, the product is %s, and the quotient is %s
+  #12 = Class              #46            // java/lang/Object
+  #13 = Methodref          #47.#48        // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+  #14 = Methodref          #2.#49         // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #15 = Methodref          #50.#51        // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #16 = Methodref          #2.#52         // java/lang/String.equals:(Ljava/lang/Object;)Z
+  #17 = Class              #53            // java/lang/Exception
+  #18 = String             #54            // Divisor cannot be 0
+  #19 = Methodref          #17.#55        // java/lang/Exception."<init>":(Ljava/lang/String;)V
+  #20 = String             #56            // Illegal operator
+  #21 = Utf8               <init>
+  #22 = Utf8               ()V
+  #23 = Utf8               Code
+  #24 = Utf8               LineNumberTable
+  #25 = Utf8               main
+  #26 = Utf8               ([Ljava/lang/String;)V
+  #27 = Utf8               StackMapTable
+  #28 = Class              #57            // "[Ljava/lang/String;"
+  #29 = Class              #58            // "[I"
+  #30 = Utf8               Exceptions
+  #31 = Utf8               calculate
+  #32 = Utf8               (IILjava/lang/String;)I
+  #33 = Utf8               SourceFile
+  #34 = Utf8               Hello.java
+  #35 = NameAndType        #21:#22        // "<init>":()V
+  #36 = Utf8               java/lang/String
+  #37 = Utf8               +
+  #38 = Utf8               -
+  #39 = Utf8               *
+  #40 = Utf8               /
+  #41 = Utf8               net/gittab/basic/jvm/Hello
+  #42 = NameAndType        #31:#32        // calculate:(IILjava/lang/String;)I
+  #43 = Class              #59            // java/lang/System
+  #44 = NameAndType        #60:#61        // out:Ljava/io/PrintStream;
+  #45 = Utf8               the sum of the number %s and the number %s is %s, the difference is %s, the product is %s, and the quotient is %s
+  #46 = Utf8               java/lang/Object
+  #47 = Class              #62            // java/lang/Integer
+  #48 = NameAndType        #63:#64        // valueOf:(I)Ljava/lang/Integer;
+  #49 = NameAndType        #65:#66        // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #50 = Class              #67            // java/io/PrintStream
+  #51 = NameAndType        #68:#69        // println:(Ljava/lang/String;)V
+  #52 = NameAndType        #70:#71        // equals:(Ljava/lang/Object;)Z
+  #53 = Utf8               java/lang/Exception
+  #54 = Utf8               Divisor cannot be 0
+  #55 = NameAndType        #21:#69        // "<init>":(Ljava/lang/String;)V
+  #56 = Utf8               Illegal operator
+  #57 = Utf8               [Ljava/lang/String;
+  #58 = Utf8               [I
+  #59 = Utf8               java/lang/System
+  #60 = Utf8               out
+  #61 = Utf8               Ljava/io/PrintStream;
+  #62 = Utf8               java/lang/Integer
+  #63 = Utf8               valueOf
+  #64 = Utf8               (I)Ljava/lang/Integer;
+  #65 = Utf8               format
+  #66 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #67 = Utf8               java/io/PrintStream
+  #68 = Utf8               println
+  #69 = Utf8               (Ljava/lang/String;)V
+  #70 = Utf8               equals
+  #71 = Utf8               (Ljava/lang/Object;)Z
+{
+  public net.gittab.basic.jvm.Hello();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 8: 0
+
+  public static void main(java.lang.String[]) throws java.lang.Exception;
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=7, args_size=1
+         0: iconst_4
+         1: newarray       int
+         3: astore_1
+         4: iconst_4
+         5: anewarray     #2                  // class java/lang/String
+         8: dup
+         9: iconst_0
+        10: ldc           #3                  // String +
+        12: aastore
+        13: dup
+        14: iconst_1
+        15: ldc           #4                  // String -
+        17: aastore
+        18: dup
+        19: iconst_2
+        20: ldc           #5                  // String *
+        22: aastore
+        23: dup
+        24: iconst_3
+        25: ldc           #6                  // String /
+        27: aastore
+        28: astore_2
+        29: bipush        8
+        31: istore_3
+        32: iconst_4
+        33: istore        4
+        35: new           #7                  // class net/gittab/basic/jvm/Hello
+        38: dup
+        39: invokespecial #8                  // Method "<init>":()V
+        42: astore        5
+        44: iconst_0
+        45: istore        6
+        47: iload         6
+        49: aload_2
+        50: arraylength
+        51: if_icmpge     76
+        54: aload_1
+        55: iload         6
+        57: aload         5
+        59: iload_3
+        60: iload         4
+        62: aload_2
+        63: iload         6
+        65: aaload
+        66: invokevirtual #9                  // Method calculate:(IILjava/lang/String;)I
+        69: iastore
+        70: iinc          6, 1
+        73: goto          47
+        76: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        79: ldc           #11                 // String the sum of the number %s and the number %s is %s, the difference is %s, the product is %s, and the quotient is %s
+        81: bipush        6
+        83: anewarray     #12                 // class java/lang/Object
+        86: dup
+        87: iconst_0
+        88: iload_3
+        89: invokestatic  #13                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        92: aastore
+        93: dup
+        94: iconst_1
+        95: iload         4
+        97: invokestatic  #13                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       100: aastore
+       101: dup
+       102: iconst_2
+       103: aload_1
+       104: iconst_0
+       105: iaload
+       106: invokestatic  #13                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       109: aastore
+       110: dup
+       111: iconst_3
+       112: aload_1
+       113: iconst_1
+       114: iaload
+       115: invokestatic  #13                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       118: aastore
+       119: dup
+       120: iconst_4
+       121: aload_1
+       122: iconst_2
+       123: iaload
+       124: invokestatic  #13                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       127: aastore
+       128: dup
+       129: iconst_5
+       130: aload_1
+       131: iconst_3
+       132: iaload
+       133: invokestatic  #13                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       136: aastore
+       137: invokestatic  #14                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       140: invokevirtual #15                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       143: return
+      LineNumberTable:
+        line 11: 0
+        line 12: 4
+        line 13: 29
+        line 14: 32
+        line 15: 35
+        line 16: 44
+        line 17: 54
+        line 16: 70
+        line 19: 76
+        line 20: 89
+        line 19: 137
+        line 21: 143
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 47
+          locals = [ class "[Ljava/lang/String;", class "[I", class "[Ljava/lang/String;", int, int, class net/gittab/basic/jvm/Hello, int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 28
+    Exceptions:
+      throws java.lang.Exception
+}
+SourceFile: "Hello.java"
