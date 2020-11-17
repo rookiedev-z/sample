@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * AuthFilter.
+ * RequestFilter.
  *
  * @author rookiedev 2020/10/28 14:27
  **/
 @Slf4j
-@WebFilter(filterName = "webFilter", urlPatterns = "/*")
-public class AuthFilter implements Filter {
+@WebFilter(filterName = "requestFilter", urlPatterns = "/*")
+public class RequestFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
@@ -30,7 +30,6 @@ public class AuthFilter implements Filter {
         log.info("request path is {}", path);
 
         chain.doFilter(req, response);
-
 
     }
 

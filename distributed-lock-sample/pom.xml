@@ -8,14 +8,14 @@
 		<version>2.3.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>net.gittab.async-controller-sample</groupId>
-	<artifactId>async-controller-sample</artifactId>
+	<groupId>net.gittab.distributed-lock-sample</groupId>
+	<artifactId>distributed-lock-sample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>async-controller-sample</name>
-	<description>async controller sample project for Spring Boot</description>
+	<name>distributed-lock-sample</name>
+	<description>distributed lock sample project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -30,8 +30,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-amqp</artifactId>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson</artifactId>
+			<version>3.13.6</version>
 		</dependency>
 
 		<dependency>

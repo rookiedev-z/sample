@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  max-http-header-size: 16KB
+  tomcat:
+    max-http-form-post-size: 20MB
+    threads:
+      max: 1000
+      min-spare: 50
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    property-naming-strategy: SNAKE_CASE
+    time-zone: GMT+8
+  data:
+    redis:
+      repositories:
+        enabled: false
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+logging:
+  level:
+    root: info
+

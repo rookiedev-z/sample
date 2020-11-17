@@ -1,6 +1,7 @@
 package net.gittab.sample.domain;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Transaction.
@@ -8,7 +9,8 @@ import lombok.Data;
  * @author rookiedev 2020/10/27 15:38
  **/
 @Data
-public class Transaction {
+@ToString
+public class Payment {
 
     private String id;
 

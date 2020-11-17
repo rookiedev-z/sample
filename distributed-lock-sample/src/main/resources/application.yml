@@ -1,41 +1,29 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  max-http-header-size: 16KB
+  tomcat:
+    max-http-form-post-size: 20MB
+    threads:
+      max: 1000
+      min-spare: 50
+
 spring:
-  rabbitmq:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    property-naming-strategy: SNAKE_CASE
+    time-zone: GMT+8
+  data:
+    redis:
+      repositories:
+        enabled: false
+  redis:
     host: 127.0.0.1
-    port: 5672
-    username: admin
-    password: admin
-    listener-request-queue: request.queue
-    listener-response-queue: response.queue
-    request:
-      queue: request.queue
-      exchange: request.exchange
-      routing-key: rookiedev
-    response:
-      queue: response.queue
-      exchange: response.exchange
-      routing-key: rookiedev
-
-#    request:
-#      host: 127.0.0.1
-#      port: 5672
-#      username: admin
-#      password: admin
-#      listener-queue: response.queue
-#      template:
-#        exchange: request.exchange
-#        routing-key: rookiedev
-#        default-receive-queue: request.queue
-#    response:
-#      host: 127.0.0.1
-#      port: 5672
-#      username: admin
-#      password: admin
-#      listener-queue: request.exchange
-#      template:
-#        exchange: response.exchange
-#        routing-key: rookiedev
-#        default-receive-queue: response.queue
-
+    port: 6379
+    database: 0
 logging:
   level:
     root: info
