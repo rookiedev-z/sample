@@ -36,7 +36,7 @@ public class WeakHashLock2<T> {
                 referenceType);
     }
 
-    public ReentrantLock getMutex(T key) {
+    public ReentrantLock get(T key) {
         return this.referenceHashMap.computeIfAbsent(key, lock -> new ReentrantLock());
     }
 

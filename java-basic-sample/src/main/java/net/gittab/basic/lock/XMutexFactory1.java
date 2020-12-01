@@ -56,7 +56,7 @@ public class XMutexFactory1<KeyT> {
      * when new items are created by a factory. This method can be used to force a purge.
      */
     public void purgeUnreferenced() {
-        ((ConcurrentReferenceHashMap) this.referenceHashMap).purgeUnreferencedEntries();
+        this.referenceHashMap.purgeUnreferencedEntries();
     }
 
 }

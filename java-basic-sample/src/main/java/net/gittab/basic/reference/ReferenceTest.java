@@ -6,6 +6,8 @@ import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 
+import org.springframework.util.ConcurrentReferenceHashMap;
+
 /**
  * ReferenceTest.
  *
@@ -105,6 +107,18 @@ public class ReferenceTest {
         System.out.println(phantomReference.isEnqueued());
         System.out.println(referenceQueue.poll() == phantomReference);
 
+        ConcurrentReferenceHashMap<String, String> referenceHashMap = new ConcurrentReferenceHashMap<>(16, 0.75f, 1, ConcurrentReferenceHashMap.ReferenceType.WEAK);
+        referenceHashMap.put("key", "value");
+        // 经过 GC 标记之后，弱引用已经进入创建时指定的队列中，这时可以去轮询队列移除元素了
+        System.gc();
+        System.out.println("==========weak reference gc==========");
+        // isEmpty 和 size 方法返回的结果是还没有移除元素的结果
+        System.out.println(referenceHashMap.isEmpty()); // false
+        System.out.println(referenceHashMap.size()); // 1
+        // get 方法中调用了移除元素的方法
+        System.out.println(referenceHashMap.get("key")); // null
+        System.out.println(referenceHashMap.isEmpty()); // true
+        System.out.println(referenceHashMap.size()); // 0
 
 
     }

@@ -17,7 +17,7 @@ public class StringLockTest {
 
     Logger logger = Logger.getLogger(StringLockTest.class.getName());
 
-    XMutexFactory1 xMutexFactory1 = new XMutexFactory1();
+    XMutexFactory1<String> xMutexFactory1 = new XMutexFactory1<>();
 
     public void save(String uniqueId) throws InterruptedException {
         // https://docs.oracle.com/javase/9/docs/api/java/lang/String.html#intern--
